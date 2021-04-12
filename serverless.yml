@@ -1,0 +1,57 @@
+# serverless.yml
+
+service: my-express-application
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  APP_SMTP_SERVER: ${ssm:/aws/reference/secretsmanager/${opt:stage, self:provider.stage}/AdoptaNic/BE/APP_SMTP_SERVER}
+  APP_SMTP_PORT: ${ssm:/aws/reference/secretsmanager/${opt:stage, self:provider.stage}/AdoptaNic/BE/APP_SMTP_PORT}
+  APP_SMTP_USER: ${ssm:/aws/reference/secretsmanager/${opt:stage, self:provider.stage}/AdoptaNic/BE/APP_SMTP_USER}
+  APP_SMTP_PASSWORD: ${ssm:/aws/reference/secretsmanager/${opt:stage, self:provider.stage}/AdoptaNic/BE/APP_SMTP_PASSWORD}
+
+functions:
+    verifyEmailSMTPService:
+      handler: api/alerts.verifyEmailSMTPService
+      environment:
+        # APP_SMTP_SERVER: ${self:custom.APP_SMTP_SERVER, file(./env.${self:custom.stage}.json)}
+        # APP_SMTP_PORT: ${self:custom.APP_SMTP_PORT, file(./env.${self:custom.stage}.json)}
+        # APP_SMTP_USER: ${self:custom.APP_SMTP_USER, file(./env.${self:custom.stage}.json)}
+        # APP_SMTP_PASSWORD: ${self:custom.APP_SMTP_PASSWORD, file(./env.${self:custom.stage}.json)}
+      memorySize: 128
+      description: Test email service
+      events:
+        - http:
+            path: alerts/test
+            method: get
+    sendEmailNotification:
+      handler: api/alerts.sendEmailNotification
+      enviroment: 
+      memorySize: 128
+      description: Send email notifications
+      events:
+        - http:
+            path: alerts/send
+            method: post
+    envValues:
+      handler: api/alerts.envValues
+      memorySize: 128
+      description: TEST
+      events:
+        - http:
+            path: alerts/envValues
+            method: get
+
+  # app:
+  #   handler: index.handler
+  #   events:
+  #     - http: ANY /
+  #     - http: 'ANY {proxy+}'
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
