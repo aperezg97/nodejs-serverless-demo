@@ -1,4 +1,5 @@
 const emailService = require('../services/email.service');
+const sendGridService = require('../services/sendgrid.service');
 
 const sendEmailNotification = async (event, context, callback) => {
     let responseData;
@@ -32,4 +33,21 @@ const envValues = (event, context, callback) => {
     callback(null, responseData);
 }
 
-module.exports = {verifyEmailSMTPService, sendEmailNotification, envValues}
+const sendSendGridTestEmail = (event, context, callback) => {
+    const { user } = JSON.parse(event.body);
+    let responseData;
+    try {
+        const result = sendGridService.sendTestTemplateEmail(user);
+        responseData = { statusCode: 200, body: JSON.stringify(result) };
+    } catch (ex) {
+        responseData = { statusCode: 500, body: JSON.stringify(ex, Object.getOwnPropertyNames(ex)) };
+    }
+    callback(null, responseData);
+}
+
+module.exports = {
+    verifyEmailSMTPService, 
+    sendEmailNotification, 
+    envValues,
+    sendSendGridTestEmail
+}

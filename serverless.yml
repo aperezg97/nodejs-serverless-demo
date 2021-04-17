@@ -45,6 +45,14 @@ functions:
         - http:
             path: alerts/envValues
             method: get
+    sendGridTest:
+      handler: api/alerts.sendSendGridTestEmail
+      memorySize: 128
+      description: TEST
+      events:
+        - http:
+            path: alerts/sendGridTest
+            method: post
 
   # app:
   #   handler: index.handler
