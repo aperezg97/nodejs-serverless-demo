@@ -85,3 +85,8 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin
   - serverless-plugin-typescript
+
+# 'Hack' to include template files into serverless build
+package:
+  include:
+    - templates/**

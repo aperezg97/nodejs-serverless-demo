@@ -49,7 +49,7 @@ const sendContactEmail = (event: any, context: Context, callback: Callback) => {
         };
 
         sendGridService = new SendGridService();
-        const result = sendGridService.sendEmail(emailOptions, `templates/emails/contact/contact-email.html`,{
+        const result = sendGridService.sendEmail(emailOptions, `./templates/emails/contact/contact-email.html`,{
             organizationData,
             userInfo,
             animals: animalsData.map((animal) => animal.name).join(','),
