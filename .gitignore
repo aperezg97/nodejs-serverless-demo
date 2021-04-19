@@ -1,3 +1,14 @@
+# node modules
 node_modules
+
+# serverless compilation files
 .serverless
-.env.local
+
+
+# env files
+*.env.*
+!.env.example
+
+# typescript compilation files
+*.map
+.build

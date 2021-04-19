@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    include meta.html
+    style
+      //- include style.
+      include styles.html
+
+  body
+    h1 My Site
+    p Welcome to my super lame site.
+    h1 #{dummy_content}
+    //- including raw html
+    include body.html
+
+  script
+      //- include script.js
