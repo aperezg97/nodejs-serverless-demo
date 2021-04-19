@@ -1,7 +1,6 @@
 import { Callback, Context } from 'aws-lambda';
 import { EmailService } from '../services/email.service';
 import { SendGridService } from '../services/sendgrid.service';
-import pug from "pug";
 import { TemplateService } from '../services/template.service';
 
 const sendEmailNotification =  async (event: any, context: Context, callback: Callback) => {

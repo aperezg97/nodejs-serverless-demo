@@ -15,66 +15,71 @@ custom:
   APP_SMTP_PASSWORD: ${ssm:/aws/reference/secretsmanager/${opt:stage, self:provider.stage}/AdoptaNic/BE/APP_SMTP_PASSWORD}
 
 functions:
-    verifyEmailSMTPService:
-      handler: serverless-functions/alerts.verifyEmailSMTPService
-      environment:
-        # APP_SMTP_SERVER: ${self:custom.APP_SMTP_SERVER, file(./env.${self:custom.stage}.json)}
-        # APP_SMTP_PORT: ${self:custom.APP_SMTP_PORT, file(./env.${self:custom.stage}.json)}
-        # APP_SMTP_USER: ${self:custom.APP_SMTP_USER, file(./env.${self:custom.stage}.json)}
-        # APP_SMTP_PASSWORD: ${self:custom.APP_SMTP_PASSWORD, file(./env.${self:custom.stage}.json)}
-      memorySize: 128
-      description: Test email service
-      events:
-        - http:
-            path: alerts/test
-            method: get
-    sendEmailNotification:
-      handler: serverless-functions/alerts.sendEmailNotification
-      enviroment: 
-      memorySize: 128
-      description: Send email notifications
-      events:
-        - http:
-            path: alerts/send
-            method: post
-    envValues:
-      handler: serverless-functions/alerts.envValues
-      memorySize: 128
-      description: TEST
-      events:
-        - http:
-            path: alerts/envValues
-            method: get
-    sendGridTest:
-      handler: serverless-functions/alerts.sendSendGridTestEmail
-      memorySize: 128
-      description: TEST
-      events:
-        - http:
-            path: alerts/sendGridTest
-            method: post
-    compilePugTemplate:
-      handler: serverless-functions/alerts.compilePugTemplate
-      memorySize: 128
-      description: TESTING PUG TEMPLATES
-      events:
-        - http:
-            path: alerts/compilePugTemplate
-            method: get
-    compileHtmlTemplate:
-      handler: serverless-functions/alerts.compileHtmlTemplate
-      memorySize: 128
-      description: TESTING RAW HTML TEMPLATES
-      events:
-        - http:
-            path: alerts/compileHtmlTemplate
-            method: get
+    # verifyEmailSMTPService:
+    #   handler: serverless-functions/alerts.verifyEmailSMTPService
+    #   environment:
+    #     # APP_SMTP_SERVER: ${self:custom.APP_SMTP_SERVER, file(./env.${self:custom.stage}.json)}
+    #     # APP_SMTP_PORT: ${self:custom.APP_SMTP_PORT, file(./env.${self:custom.stage}.json)}
+    #     # APP_SMTP_USER: ${self:custom.APP_SMTP_USER, file(./env.${self:custom.stage}.json)}
+    #     # APP_SMTP_PASSWORD: ${self:custom.APP_SMTP_PASSWORD, file(./env.${self:custom.stage}.json)}
+    #   memorySize: 128
+    #   description: Test email service
+    #   events:
+    #     - http:
+    #         path: alerts/test
+    #         method: get
+    # envValues:
+    #   handler: serverless-functions/alerts.envValues
+    #   memorySize: 128
+    #   description: TEST
+    #   events:
+    #     - http:
+    #         path: alerts/envValues
+    #         method: get
 
-  # app:
-  #   handler: index.handler
-  #   events:
-  #     - http: ANY /
-  #     - http: 'ANY {proxy+}'
+    # sendEmailNotification:
+    #   handler: serverless-functions/alerts.sendEmailNotification
+    #   enviroment: 
+    #   memorySize: 128
+    #   description: Send email notifications
+    #   events:
+    #     - http:
+    #         path: alerts/send
+    #         method: post
+    # sendGridTest:
+    #   handler: serverless-functions/alerts.sendSendGridTestEmail
+    #   memorySize: 128
+    #   description: TEST
+    #   events:
+    #     - http:
+    #         path: alerts/sendGridTest
+    #         method: post
+
+    # compilePugTemplate:
+    #   handler: serverless-functions/alerts.compilePugTemplate
+    #   memorySize: 128
+    #   description: TESTING PUG TEMPLATES
+    #   events:
+    #     - http:
+    #         path: alerts/compilePugTemplate
+    #         method: get
+    # compileHtmlTemplate:
+    #   handler: serverless-functions/alerts.compileHtmlTemplate
+    #   memorySize: 128
+    #   description: TESTING RAW HTML TEMPLATES
+    #   events:
+    #     - http:
+    #         path: alerts/compileHtmlTemplate
+    #         method: get
+
+    sendContactEmail:
+      handler: serverless-functions/email.sendContactEmail
+      memorySize: 128
+      description: Send contact email notification
+      events:
+        - http:
+            path: email/sendContactEmail
+            method: post
 
 plugins:
   - serverless-offline
