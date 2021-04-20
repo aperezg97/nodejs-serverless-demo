@@ -39,6 +39,10 @@ const sendContactEmail = (event: any, context: Context, callback: Callback) => {
             });
         });
 
+        if (!organizationData.name || !organizationData.email) {
+            throw Error('Organization name and email are required!');
+        }
+
         const subject = `Hi ${organization.name}`;
         const text = `You have received a new Contact request!`;
 
