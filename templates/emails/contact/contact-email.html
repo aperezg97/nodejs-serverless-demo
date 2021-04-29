@@ -799,14 +799,10 @@
                     <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
                       <h1
                         style="margin-top: 0;margin-bottom: 0;font-style: normal;font-weight: normal;color: #565656;font-size: 30px;line-height: 38px;text-align: center;">
-                        <strong>Hola %organizationData.name%, Has recibido una nueva solicitud!</strong>
+                        <strong>Hola %organizationData.name%, Has recibido un mensaje nuevo!</strong>
                       </h1>
                       <p style="margin-top: 20px; margin-bottom: 0">
-                        Proin molestie amet quis adipiscing et eget congue congue condimentum ut nulla nisl purus urna
-                        elit sit tortor adipiscing phasellus mi ex arcu enim gravida ut nunc lacus id eu dolor dolor
-                        felis
-                        varius amet tristique lorem arcu nisi tincidunt sed purus accumsan nec metus nec sit aliquam
-                        lorem tempus.
+                        Alguien te contactó a través de AdoptaNic para obtener más información sobre un animalito!
                       </p>
                     </div>
                   </div>
@@ -838,7 +834,7 @@
                     </div>
                     <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;margin-top: 5px;margin-bottom: 5px;">
                       <h3 style="margin-top: 0;margin-bottom: 0;font-style: normal;font-weight: normal;color: #565656;">
-                        <strong>Correo:</strong>
+                        <strong>Estado Civil:</strong>
                       </h3>
                       <span>
                         %userInfo.marital_status%
@@ -846,7 +842,15 @@
                     </div>
                     <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;margin-top: 5px;margin-bottom: 5px;">
                       <h3 style="margin-top: 0;margin-bottom: 0;font-style: normal;font-weight: normal;color: #565656;">
-                        <strong>Estado Civil:</strong>
+                        <strong>Nacionalidad:</strong>
+                      </h3>
+                      <span>
+                        %userInfo.nationality%
+                      </span>
+                    </div>
+                    <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;margin-top: 5px;margin-bottom: 5px;">
+                      <h3 style="margin-top: 0;margin-bottom: 0;font-style: normal;font-weight: normal;color: #565656;">
+                        <strong>Lugar de Residencia:</strong>
                       </h3>
                       <span>
                         %userInfo.city_of_residence%
@@ -858,14 +862,6 @@
                       </h3>
                       <span>
                         %userInfo.address%
-                      </span>
-                    </div>
-                    <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;margin-top: 5px;margin-bottom: 5px;">
-                      <h3 style="margin-top: 0;margin-bottom: 0;font-style: normal;font-weight: normal;color: #565656;">
-                        <strong>Nacionalidad:</strong>
-                      </h3>
-                      <span>
-                        %userInfo.nationality%
                       </span>
                     </div>
                     <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;margin-top: 5px;margin-bottom: 5px;">
@@ -900,8 +896,9 @@
                     <div class="btn btn--flat btn--large" style="margin-bottom: 20px; text-align: center">
                       <![if !mso]>
                       <a style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;
-                            text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #ffffff !important;background-color: #80bf2e;font-family: Ubuntu, sans-serif;"
-                        href="#">DUMMY BUTTON</a>
+                            text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #ffffff !important;background-color: #F56565;font-family: Ubuntu, sans-serif;"
+                          href="https://gentle-anchorage-74113.herokuapp.com/admin/plugins/content-manager/collectionType/application::contact.contact?page=1&pageSize=10&_sort=name:ASC&_where[0][shelter.id]=%organizationData.id%"
+                        >Mas Información</a>
                       <![endif]>
                       <!--[if mso
                           ]><p style="line-height: 0; margin: 0">&nbsp;</p>

@@ -22,15 +22,15 @@ const sendContactEmail = (event: any, context: Context, callback: Callback) => {
             email: organization.email,
         };
         const userInfo = {
-            name: user.name,
-            second_name: user.second_name,
-            last_name: user.last_name,
-            email: user.email,
-            marital_status: user.marital_status,
-            city_of_residence: user.city_of_residence,
-            address: user.address,
-            nationality: user.nationality,
-            phone_number: user.phone_number,
+            name: user.name || '',
+            second_name: user.second_name || '',
+            last_name: user.last_name || '',
+            email: user.email || '',
+            marital_status: user.marital_status || '',
+            city_of_residence: user.city_of_residence || '',
+            address: user.address || '',
+            nationality: user.nationality || '',
+            phone_number: user.phone_number || '',
         };
         const animalsData: any[] = [];
         animals.forEach((animal: any) => {
